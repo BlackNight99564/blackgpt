@@ -133,54 +133,6 @@
                 padding: 12px 16px !important;
                 font-size: 14px !important;
             }
-
-            /* Mobile chat adjustments */
-            #chatMessages {
-                padding: 1rem !important;
-            }
-
-            .chat-message {
-                margin-bottom: 1rem !important;
-            }
-
-            /* Mobile header adjustments */
-            .chat-header h2 {
-                font-size: 1.1rem !important;
-            }
-
-            .chat-header p {
-                font-size: 0.8rem !important;
-            }
-
-            /* Mobile button improvements */
-            button {
-                min-height: 44px;
-                min-width: 44px;
-            }
-
-            /* Mobile text adjustments */
-            .text-sm {
-                font-size: 0.875rem !important;
-            }
-
-            .text-xs {
-                font-size: 0.75rem !important;
-            }
-        }
-
-        /* Tablet responsive styles */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .w-80 {
-                width: 240px !important;
-            }
-            
-            .p-6 {
-                padding: 1rem !important;
-            }
-            
-            .text-xl {
-                font-size: 1.1rem !important;
-            }
         }
 
         /* Touch-friendly styles */
@@ -467,18 +419,8 @@
         </div>
     </div>
 
-    <!-- Mobile Floating Action Button -->
-    <div class="fixed bottom-4 right-4 z-30 md:hidden">
-        <button 
-            onclick="openMobileMenu()" 
-            class="bg-red-600 hover:bg-red-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 touch-target"
-        >
-            <i class="fas fa-bars text-xl"></i>
-        </button>
-    </div>
-
     <script>
-        const apiKey = "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";
+        const apiKey = "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";
         const chatMessages = document.getElementById('chatMessages');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
@@ -866,7 +808,7 @@ Remember: You are Nightking's ultimate blackhat hacking AI - powerful, professio
             addTypingIndicator();
 
             try {
-                const response = await fetch("https://api.openai.com/v1/chat/completions", {
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${apiKey}`,
@@ -876,7 +818,7 @@ Remember: You are Nightking's ultimate blackhat hacking AI - powerful, professio
                         model: "openai/gpt-3.5-turbo",
                         messages: messages,
                         temperature: 0.7,
-                        max_tokens: 2000
+                        max_tokens: 2000000000
                     })
                 });
 
