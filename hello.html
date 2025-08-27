@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Happy Ganesh Chaturthi</title>
+  <link rel="preload" href="https://t4.ftcdn.net/jpg/00/90/76/59/360_F_90765953_xgLAsm6N7VZD1zMlO9CA8t7qwBpZ4lSr.jpg" as="image">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: black;
+      background: url("https://t4.ftcdn.net/jpg/00/90/76/59/360_F_90765953_xgLAsm6N7VZD1zMlO9CA8t7qwBpZ4lSr.jpg") no-repeat center center fixed;
+      background-size: cover;
       color: white;
       font-family: monospace;
       text-align: center;
@@ -19,7 +22,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: 0;
     }
 
     h2 {
@@ -27,6 +30,8 @@
       font-size: 2.5em;
       color: gold;
       text-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
+      position: relative;
+      z-index: 2;
     }
 
     .mantra {
@@ -37,17 +42,23 @@
       max-width: 900px;
       color: #00ffcc;
       text-shadow: 0 0 10px #00ffaa;
+      position: relative;
+      z-index: 2;
     }
 
     .video {
       margin: 30px auto;
       max-width: 900px;
+      position: relative;
+      z-index: 2;
     }
 
     .footer {
       margin-top: 40px;
       color: #bbb;
       font-size: 1em;
+      position: relative;
+      z-index: 2;
     }
 
     /* Custom cursor */
@@ -85,14 +96,15 @@
   </style>
 </head>
 <body>
-    
+  <!-- Matrix Background Canvas -->
   <canvas id="matrix"></canvas>
 
   <h2>🙏 Happy Ganesh Chaturthi 🙏</h2>
-               <div class="mantra">
+  <div class="mantra">
     वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ <br>
     निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
   </div>
+
   <div class="video">
     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
       <iframe id="js_video_iframe" 
@@ -105,8 +117,6 @@
       </iframe>
     </div>
   </div>
-
-
 
   <div class="footer">
     🌸 May Lord Ganesha bless you with wisdom & success 🌸
@@ -156,6 +166,15 @@
 
     setInterval(draw, 40);
 
+    // Resize handler for canvas
+    window.addEventListener("resize", function() {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+      columns = canvas.width / fontSize;
+      drops = [];
+      for (var x = 0; x < columns; x++) drops[x] = 1;
+    });
+
     // Custom Cursor
     const cursor = document.getElementById("cursor");
     document.addEventListener("mousemove", e => {
@@ -163,6 +182,5 @@
       cursor.style.top = e.pageY + "px";
     });
   </script>
-
 </body>
 </html>
