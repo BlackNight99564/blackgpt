@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Ganesh Chaturthi</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 2.5em;
+      color: gold;
+      text-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
+    }
+
+    .mantra {
+      margin: 20px auto;
+      font-size: 1.4em;
+      line-height: 1.8;
+      width: 85%;
+      max-width: 900px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffaa;
+    }
+
+    .video {
+      margin: 30px auto;
+      max-width: 900px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: #bbb;
+      font-size: 1em;
+    }
+
+    /* Custom cursor */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background: url("https://www.rw-designer.com/cursor-view/1702.png") no-repeat center center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Floating Ganesha Logo */
+    .ganesha-logo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      z-index: 1000;
+    }
+
+    .ganesha-logo img {
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 20px orange, 0 0 40px gold;
+      transition: transform 0.3s ease;
+    }
+
+    .ganesha-logo img:hover {
+      transform: scale(1.15);
+    }
+  </style>
+</head>
+<body>
+    
+  <canvas id="matrix"></canvas>
+
+  <h2>🙏 Happy Ganesh Chaturthi 🙏</h2>
+               <div class="mantra">
+    वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ <br>
+    निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+  </div>
+  <div class="video">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+      <iframe id="js_video_iframe" 
+              src="https://jumpshare.com/embed/XmWvCTvLOIX6gNyRnaO5" 
+              frameborder="0" 
+              webkitallowfullscreen 
+              mozallowfullscreen 
+              allowfullscreen 
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      </iframe>
+    </div>
+  </div>
+
+
+
+  <div class="footer">
+    🌸 May Lord Ganesha bless you with wisdom & success 🌸
+  </div>
+
+  <!-- Floating Ganesha Logo -->
+  <div class="ganesha-logo">
+    <img src="https://png.pngtree.com/png-vector/20240728/ourmid/pngtree-significance-of-the-lord-ganesha-icon-in-hindu-culture-png-image_13234213.png" alt="Ganesh Logo">
+  </div>
+
+  <div class="custom-cursor" id="cursor"></div>
+
+  <script>
+    // Matrix Effect
+    var canvas = document.getElementById("matrix");
+    var ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    var letters = "ॐ गण गणपतये नमः 1234567890";
+    letters = letters.split("");
+
+    var fontSize = 16;
+    var columns = canvas.width / fontSize;
+
+    var drops = [];
+    for (var x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#ff9900";
+      ctx.font = fontSize + "px monospace";
+
+      for (var i = 0; i < drops.length; i++) {
+        var text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 40);
+
+    // Custom Cursor
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.pageX + "px";
+      cursor.style.top = e.pageY + "px";
+    });
+  </script>
+
+</body>
+</html>
